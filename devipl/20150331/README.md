@@ -1,6 +1,6 @@
 # 環境構築
 
-Mac上にipython-notebook, vagrant VM を立てて、そのVMにプロビジョニングすることを考える。  
+Mac上にipython-notebook, vagrant VM を立てて、そのVMをプロビジョニングすることを考える。  
 プロビジョニングする内容はansibleであれば、特に指定はない（apacheなどが簡単で良いかと）
 
 

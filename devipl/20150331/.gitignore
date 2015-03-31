@@ -1,3 +1,4 @@
-log
+log/stdout.log
+log/error.log
 vagrantfile/ubuntu1404/.vagrant
 notebook/.ipynb_checkpoints
