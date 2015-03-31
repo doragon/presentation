@@ -1,4 +1,5 @@
 *.yml
+*.conf
 log/stdout.log
 log/error.log
 vagrantfile/ubuntu1404/.vagrant
