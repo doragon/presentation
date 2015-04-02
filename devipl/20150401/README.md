@@ -47,3 +47,6 @@ Host 192.168.33.*
   StrictHostKeyChecking no
 ```
 
+# 発表資料
+
+ - [iPython-notebookを使った VMプロビジョニング ](http://www.slideshare.net/RyutaKoide/ipythonnotebookprovisioning)

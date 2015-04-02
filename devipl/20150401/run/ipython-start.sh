@@ -1,8 +1,9 @@
 #!/bin/bash
 
+export NOTEBOOK_PATH=${HOME}/workspace/github/presentation/devipl/20150401
 export PORT=8080
-export WORK_DIR=${HOME}/workspace/github/presentation/devipl/20150331/notebook
-export LOG_DIR=${HOME}/workspace/github/presentation/devipl/20150331/log
+export WORK_DIR=${NOTEBOOK_PATH}/notebook
+export LOG_DIR=${NOTEBOOK_PATH}/log
 export PYTHON_DIR=${HOME}/.pyenv/versions/2.7/bin/python2.7
 export IPYTHON_DIR=${HOME}/.pyenv/versions/2.7/bin/ipython
 
