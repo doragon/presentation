@@ -1,4 +1,6 @@
-GitLab in docker のバージョンアップをしてみた
+# GitLab in docker のバージョンアップをしてみた
+
+---
 
 先日slackにて、こんな会話がありました。
 先輩：「GitLabのバージョン上げたいけど、設定が面倒くさいな～」
@@ -9,12 +11,16 @@ GitLab in docker のバージョンアップをしてみた
 というわけで、今回は7.12.2から8.3.0へのバージョンアップになります。
 ただ、新規にGitLab in dockerを行う場合も、この方法で作成できます。
 
+---
+
 # 環境
 ホストのCentOSにVirtualBoxでUbuntuを作成し、その中にdockerを入れています。
 
 * HostOS: CentOS release 6.5
 * GuestOS: Ubuntu 14.04 LTS
 * docker version: 1.9.1
+
+---
 
 # GitLabバージョンアップの注意点
 7.12.2のバックアップデータを直接8.3.0でリストアしようとしても、互換性の問題があるため、上手くいきません。
@@ -24,8 +30,12 @@ GitLab in docker のバージョンアップをしてみた
 ```
 詳細な情報は[Upgrade fails from 7.8.1 to 8.2.0 #504](https://github.com/sameersbn/docker-gitlab/issues/504)が参考になります。
 
+---
+
 # 作業
 今回も[sameersbn/docker-gitlab](https://github.com/sameersbn/docker-gitlab)にお世話になりたいと思います。
+
+---
 
 ## docker pull 
 先に必要なdockerイメージをpullしておきます。
@@ -43,6 +53,8 @@ sameersbn/gitlab       8.1.4               f819f70c97f3        6 weeks ago      
 sameersbn/gitlab       7.14.3              43e1dcc0390f        3 months ago        631.6 MB
 sameersbn/gitlab       7.12.2              31072a65dc42        5 months ago        627.5 MB
 ```
+
+---
 
 ## docker-compose.yml
 [docker-gitlab/docker-compose.yml](https://github.com/sameersbn/docker-gitlab/blob/master/docker-compose.yml)にあるように、次のようなymlファイルを用意します。
@@ -105,10 +117,14 @@ redis:
 ここでは個人的にあった方が良いと思われる設定のみを記述しています。
 ※内部公開用です。
 
+---
+
 ## コンテナ操作
 
 新規にGitLabを作成する場合は、「起動」までを行うことで、動作を確認できます。
 docker-compose.ymlで設定した。GITLAB_HOST:GITLAB_PORTへアクセスして下さい。
+
+--
 
 ### 起動
 
@@ -134,6 +150,7 @@ dockergitlab_redis_1        /sbin/entrypoint.sh             Up      6379/tcp
 ```shell-session
 $ sudo docker exec -it dockergitlab_gitlab_1 tail -n 20 /var/log/gitlab/gitlab/sidekiq.log
 ```
+--
 
 ### バックアップファイルの配置
 GitLabは標準機能として、バックアップファイルを作成することができます。そのバックアップファイルを起動時に作成されたgitlab-data/gitlab/backups/へ配置して下さい。
@@ -141,6 +158,8 @@ GitLabは標準機能として、バックアップファイルを作成する�
 ```shell-session
 $ cp -a backup/xxxxxxxx_gitlab_backup.tar gitlab-data/gitlab/backups/
 ```
+
+--
 
 ### バックアップからのリストア
 今回は元々使用していたGitLabサーバー（7.12.2）で作成したバックアップファイルをdockerで起動したGitLabサーバー（7.12.2）でリストアします。
@@ -154,6 +173,8 @@ root@4e2a404f9d38:/home/git/gitlab# exit
 ```
 
 docker-compose.ymlで設定した。GITLAB_HOST:GITLAB_PORTへアクセスすれば、復元されていることの確認ができます。
+
+--
 
 ### バックアップファイルの作成
 起動していたGitlabコンテナを停止し、バックアップファイルを作成します。
@@ -187,6 +208,8 @@ docker run --name gitlab -it --rm \
 
 7.12.2のバックアップを作成しています。（本来であれば不要かと思いますが、dockerコンテナで作成し直しています。）
 
+--
+
 ### 「バックアップからのリストア」を繰り返す
 
 docker-compose.ymlのバージョンを修正し、backup.shのバージョンも修正します。ここからは前述したことの繰り返しになります。
@@ -207,6 +230,8 @@ $ vim backup.sh
 $ sudo sh backup.sh
 ```
 
+--
+
 ### 最新版GitLabの動作確認
 
 ここまで終わったら、動作を確認してみましょう。
@@ -216,9 +241,15 @@ GITLAB_HOST:GITLAB_PORTへアクセスし、バージョンを確認してみま
 
 8.3.0になったみたいですね。
 
+---
+
 # おわりに
+
+---
 
 とても簡単にGitLabのバージョンを上げることができました。
 dockerだと、やり直しも簡単にできるので、とりあえず試してみる…という気持ちで触ってみると良いと思います。
+
+---
 
 Let's play docker!
