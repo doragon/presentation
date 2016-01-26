@@ -1,0 +1,10 @@
+.reveal .slides { text-align: left; }
+.reveal h1, .reveal h2, .reveal h3, .reveal h4, .reveal h5, .reveal h6 {
+  text-transform: none;
+  text-shadow: none;
+}
+.reveal h1 { font-size: 3.00em; }
+.reveal h2 { font-size: 2.00em; }
+.reveal h3 { font-size: 1.50em; }
+.reveal h4 { font-size: 1.00em; }
+.reveal .slides .center div { text-align: center; }
