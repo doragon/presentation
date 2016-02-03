@@ -1,4 +1,4 @@
-## Update GitLab in docker
+## Update GitLab on docker
 
 ---
 
@@ -14,7 +14,7 @@
 ---
 
 というわけで、今回は7.12.2から8.3.0へのバージョンアップになります。
-ただ、新規にGitLab in dockerを行う場合も、この方法で作成できます。
+ただ、新規にGitLab on dockerを行う場合も、この方法で作成できます。
 
 ---
 
